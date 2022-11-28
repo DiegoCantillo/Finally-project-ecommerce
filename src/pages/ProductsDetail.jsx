@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from 'react';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getProductsThunk } from '../store/slice/products.slice';
@@ -18,75 +20,81 @@ const ProductsDetail = () => {
 
 
     const [counter, setCounter] = useState(0);
+    const [quantity, setQuantity] = useState(1);
 
-    const increment = () => {
+    const next = () => {
         setCounter(counter + 1);
     };
-    const decrement = () => {
+    const prev = () => {
         setCounter(counter - 1);
     };
+
+
+
+    // <div>
+    //     <button onClick={prev} disabled={counter == 0}><i className="fa-solid fa-chevron-left" ></i></button>
+    //     <button onClick={next} disabled={counter == 2}><i class="fa-solid fa-chevron-right"></i></button>
+    // </div>
+
 
     return (
         <>
             <div>
-                <div className="product--detail">
-                    <h1>New Detail</h1>
-                    <h2>{productDetail?.title}</h2>
-                    <p>{productDetail?.category.name}</p>
-                    <img src={productDetail?.productImgs[0]} alt="" />
-                    <div>
-                        <button>increment</button>
-                        <button>decrement</button>
-                    </div>
+                <div className="home--and__title">
+                    <h2>Home</h2><h2 style={{ fontSize: 16 }}>{productDetail?.title}</h2>
                 </div>
-                <div>
-                    <h2>{productDetail?.title}</h2>
-                    <p>{productDetail?.description}</p>
-                    <div>
-                        <div>
-                            <span>Price</span>
-                            <span>{productDetail?.price}</span>
-                        </div>
-                        <div>
-                            <span>Quantity</span>
-                            <button onClick={increment}>+</button>
-                            <span>{counter}</span>
-                            <button
-                                onClick={decrement}
-                                disabled={counter === 0 ? true : false}
-                            >
-                                -
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <Row>
+                    <Col lg className='detail--img'>
+                        <button onClick={prev} disabled={counter == 0}><i className="fa-solid fa-chevron-left"></i></button>
+                        <Card.Img
+                            variant="top"
+                            src={productDetail?.productImgs[counter]}
+                            style={{ height: 290, objectFit: 'contain'}}
+                        />
+                        <button onClick={next} disabled={counter == 2}><i className="fa-solid fa-chevron-right"></i></button>
+                    </Col>
+                    <Col lg className='detail--description'>
+                        <h2>{productDetail?.title}</h2>
+                        <p>{productDetail?.description}</p>
+                        <span>Price</span>
+                        <span>{productDetail?.price}</span>
+                        <Button clasName="btn--car__detail">
+                            Add to Cart
+                        </Button>
+                    </Col>
+                </Row>
             </div>
-            <ul>
-                <div className='div-card'>
-                    <div className='div--card'>
-                        {
-                            relatedProduct.map(related => {
-                                return (
-                                    <li key={related.id}>
-                                        <div className='div--card__content'>
-                                            <Link to={`/detail/${related.id}`}>
-                                                <div className="div--img">
-                                                    <img src={related.productImgs[0]} alt={related.title} className='div--card__img' />
-                                                </div>
-                                                <div className='div--details'>
-                                                    <strong>{related.title}</strong>
-                                                    <span className='price'>Price</span>
-                                                    <span className='amount'>$ {related.price}</span>
-                                                </div>
-                                            </Link>
-                                            <button>CarShop</button>
+            <ul className='related--product'>
+                <Row xs={1} md={2} lg={4} className="g-4">
+                    {relatedProduct.map(related => (
+                        <Col>
+                            <Card>
+                                <Link to={`/detail/${related.id}`}>
+                                    <Card.Img
+                                        key={related.id}
+                                        variant="top"
+                                        src={related.productImgs[0]}
+                                        style={{ height: 210, objectFit: 'contain', padding: 30 }}
+                                    />
+                                    <div className="line"></div>
+                                    <Card.Body>
+                                        <div className="info--card">
+                                            <Card.Title><h2 style={{ fontSize: 13 }}>{related.title}</h2></Card.Title>
+                                            <div className="p">
+                                                <Card.Text>
+                                                    <span style={{ color: 'rgb(106, 104, 104' }}>Price</span>
+                                                </Card.Text>
+                                                <Card.Text>
+                                                    <span style={{ fontSize: 14 }}>{related.price}</span>
+                                                </Card.Text>
+                                            </div>
                                         </div>
-                                    </li>
-                                );
-                            })
-                        }
-                    </div>
-                </div>
+                                    </Card.Body>
+                                </Link>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </ul>
         </>
 

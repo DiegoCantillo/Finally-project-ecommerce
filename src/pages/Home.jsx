@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Button, InputGroup, Form } from 'react-bootstrap';
+import { Button, InputGroup, Form, Row, Col, ListGroup, Card } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -24,55 +24,69 @@ const Home = () => {
 
     return (
         <div className='home'>
-            <h1>Componente Home</h1>
-            {
-                categories.map(category => (
-                    <Button key={category.id} onClick={() => dispatch(filterProductsThunk(category.id))}>
-                        {category.name}
-                    </Button>
-                ))
-            }
-            <InputGroup className="mb-3 search">
-                <Form.Control
-                    placeholder="Recipient's username"
-                    aria-label="Recipient's username"
-                    aria-describedby="basic-addon2"
-                    value={inputSearch}
-                    onChange={(e) => setInputSearch(e.target.value)}
-                />
-                <Button variant="outline-secondary"
-                    onClick={() => dispatch(searchProductThunk(inputSearch))}
-                >
-                    Search
-                </Button>
-            </InputGroup>
-            <ul>
-                <div className='div-card'>
-                    <div className='div--card'>
+            <Row>
+                <Col lg={3}>
+                    <ListGroup>
                         {
-                            products.map(product => {
-                                return (
-                                    <li key={product.id}>
-                                        <div className='div--card__content'>
-                                            <Link to={`/detail/${product.id}`}>
-                                                <div className="div--img">
-                                                    <img src={product.productImgs[0]} alt={product.title} className='div--card__img' />
-                                                </div>
-                                                <div className='div--details'>
-                                                    <strong>{product.title}</strong>
-                                                    <span className='price'>Price</span>
-                                                    <span className='amount'>$ {product.price}</span>
-                                                </div>
-                                            </Link>
-                                            <button>CarShop</button>
-                                        </div>
-                                    </li>
-                                );
-                            })
+                            categories.map(category => (
+                                <ListGroup.Item onClick={() => dispatch(filterProductsThunk(category.id))}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    {category.name}
+                                </ListGroup.Item>
+                            ))
                         }
-                    </div>
-                </div>
-            </ul>
+                    </ListGroup>
+                </Col>
+                <Col lg={9}>
+                    <InputGroup className="mb-3">
+                        <Form.Control
+                            placeholder="Recipient's username"
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                            value={inputSearch}
+                            onChange={(e) => setInputSearch(e.target.value)}
+                        />
+                        <Button variant="outline-secondary"
+                            onClick={() => dispatch(searchProductThunk(inputSearch))}
+                        >
+                            Search
+                        </Button>
+                    </InputGroup>
+                    <ul>
+                        <Row xs={1} md={2} lg={3} className="g-4">
+                            {products.map(product => (
+                                <Col>
+                                    <Card>
+                                        <Link to={`/detail/${product.id}`}>
+                                            <Card.Img
+                                                key={product.id}
+                                                variant="top"
+                                                src={product.productImgs[0]}
+                                                style={{ height: 210, objectFit: 'contain', padding: 30 }}
+                                            />
+                                            <div className="line"></div>
+                                            <Card.Body>
+                                                <div className="info--card">
+                                                    <Card.Title><h2 style={{ fontSize: 13 }}>{product.title}</h2></Card.Title>
+                                                    <div className="p">
+                                                        <Card.Text>
+                                                            <span style={{ color: 'rgb(106, 104, 104' }}>Price</span>
+                                                        </Card.Text>
+                                                        <Card.Text>
+                                                            <span style={{fontSize: 14}}>{product.price}</span>
+                                                        </Card.Text>
+                                                    </div>
+                                                </div>
+                                            </Card.Body>
+                                        </Link>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    </ul>
+                </Col>
+            </Row>
         </div>
     );
 };

@@ -1,63 +1,62 @@
-.home ul li img {
-    width: 85%;
-  }
-  
-  .div--card {
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-  .div--card__content {
-    border: solid 2px rgba(104, 104, 104, .5);
-    border-radius: 10px;
-    display: flex;
-    height: 450px;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-    justify-content: center;
-    position: relative;
-  }
-  .div--img {
-    align-items: center;
-    border-bottom: 1px solid rgba(104, 104, 104, .7);
-    display: flex;
-    height: 250px;
+.card {
+    border-radius: 8px;
+}
+
+.line{
     width: 100%;
-    justify-content: center;
-    position: relative;
-  }
-  .div--card__img {
-    display: block;
-    height: 80%;
-    margin: 0 auto;
-    object-fit: contain;
-    width: 80%;
-  }
-  .div--card li {
-    flex-basis: 20rem;
-    flex-grow: 999;
-  }
-  .div--details {
-    display: flex;
-    padding: 20px 10px;
-    flex-direction: column;
-  }
-  .price {
-    font-size: 1.2em;
-    opacity: .5;
-  }
-  .amount {
+    height: 2px;
+    border-bottom: 1px solid rgb(210, 204, 204);
+}
+
+.card-title h2{
     font-weight: 700;
-    margin-left: 10px;
-    font-size: 1.2em;
-    letter-spacing: 1px;
-  }
-  
-  .search{
-    max-width: 88%;
-    margin: auto;
-    margin-top: 30px;
-  }
+    font-size: 2px;
+}
+
+.info--card{
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.p p{
+    margin: 0;
+    padding-bottom: 0;
+    font-weight: 900;
+}
+.row{
+    height: 450px;
+}
+
+.detail--description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+}
+
+.home--and__title{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.detail--img{
+    display: flex;
+    align-items: center;
+}
+
+.detail--img button{
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 50%;
+    border: none;
+    font-size: 25px;
+}
+
+.related--product{
+    margin-top: 50px;
+}

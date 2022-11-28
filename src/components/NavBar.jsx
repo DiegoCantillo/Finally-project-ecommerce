@@ -23,7 +23,7 @@ const NavBar = () => {
                                 purchases
                             </Nav.Link>{" "}
                             {/*purchases*/}
-                            <Nav.Link>car</Nav.Link> {/*cart*/}
+                            <Nav.Link><i className="fa-solid fa-cart-shopping" style={{fontSize: 20}}></i></Nav.Link> {/*cart*/}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
