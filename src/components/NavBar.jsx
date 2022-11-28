@@ -4,9 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
+
 const NavBar = () => {
     return (
-        <div>
+        <div className='div--nav'>
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
                     <Navbar.Brand as={Link} to="/">
