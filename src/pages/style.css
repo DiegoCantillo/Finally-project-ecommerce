@@ -12,7 +12,9 @@
     font-weight: 700;
     font-size: 2px;
 }
-
+.card-body{
+    background-color: rgba(212, 220, 220, 0.104);
+}
 
 .info--card{
     width: 100%;
