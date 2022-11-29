@@ -52,7 +52,7 @@ const ProductsDetail = () => {
                         <span>Price</span>
                         <span>{productDetail?.price}</span>
                         <Button clasName="btn--car__detail">
-                            Add to Cart
+                            <span>ADD TO CART  </span><i className="fa-solid fa-cart-arrow-down"></i>
                         </Button>
                     </Col>
                 </Row>
