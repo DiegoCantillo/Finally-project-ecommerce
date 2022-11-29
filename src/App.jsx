@@ -5,6 +5,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import LoadingScreen from './components/LoadingScreen'
 import NavBar from './components/NavBar'
+import ProtectedRoutes from './components/ProtectedRoutes'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import ProductsDetail from './pages/ProductsDetail'
@@ -21,7 +22,9 @@ function App() {
       <Container className='my-5'>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/purchases' element={<Purchases/>}/>
+          <Route element={<ProtectedRoutes/>}> 
+            <Route path='/purchases' element={<Purchases/>}/>
+          </Route>
           <Route path='/login' element={<Login/>}/>
           <Route path='/detail/:id' element={<ProductsDetail/>}/>
         </Routes>

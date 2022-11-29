@@ -65,3 +65,8 @@
 .related--product{
     margin-top: 50px;
 }
+
+.div--contain__login{
+    width: 40%;
+    margin: auto;
+}

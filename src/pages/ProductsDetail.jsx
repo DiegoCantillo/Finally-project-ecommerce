@@ -51,7 +51,7 @@ const ProductsDetail = () => {
                         <p>{productDetail?.description}</p>
                         <span>Price</span>
                         <span>{productDetail?.price}</span>
-                        <Button clasName="btn--car__detail">
+                        <Button className="btn--car__detail">
                             <span>ADD TO CART  </span><i className="fa-solid fa-cart-arrow-down"></i>
                         </Button>
                     </Col>
