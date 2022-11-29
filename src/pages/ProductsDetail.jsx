@@ -16,7 +16,7 @@ const ProductsDetail = () => {
 
     const productsList = useSelector(state => state.products);
     const productDetail = productsList.find(product => product.id === +id)
-    const relatedProduct = productsList.filter(related => related?.category.id == productDetail?.category.id)
+    const relatedProduct = productsList.filter(related => related?.category.id == productDetail?.category.id && related.id !== productDetail.id)
 
 
     const [counter, setCounter] = useState(0);
@@ -28,13 +28,6 @@ const ProductsDetail = () => {
     const prev = () => {
         setCounter(counter - 1);
     };
-
-
-
-    // <div>
-    //     <button onClick={prev} disabled={counter == 0}><i className="fa-solid fa-chevron-left" ></i></button>
-    //     <button onClick={next} disabled={counter == 2}><i class="fa-solid fa-chevron-right"></i></button>
-    // </div>
 
 
     return (
