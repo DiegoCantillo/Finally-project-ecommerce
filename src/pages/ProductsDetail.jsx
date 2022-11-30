@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Carousel, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getProductsThunk } from '../store/slice/products.slice';
@@ -18,16 +18,14 @@ const ProductsDetail = () => {
     const productDetail = productsList.find(product => product.id === +id)
     const relatedProduct = productsList.filter(related => related?.category.id == productDetail?.category.id && related.id !== productDetail.id)
 
+    const [index, setIndex] = useState(0);
 
-    const [counter, setCounter] = useState(0);
-    const [quantity, setQuantity] = useState(1);
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
 
-    const next = () => {
-        setCounter(counter + 1);
-    };
-    const prev = () => {
-        setCounter(counter - 1);
-    };
+
+
 
 
     return (
@@ -36,15 +34,34 @@ const ProductsDetail = () => {
                 <div className="home--and__title">
                     <h2>Home</h2><h2 style={{ fontSize: 16 }}>{productDetail?.title}</h2>
                 </div>
-                <Row>
-                    <Col lg className='detail--img'>
-                        <button onClick={prev} disabled={counter == 0}><i className="fa-solid fa-chevron-left"></i></button>
-                        <Card.Img
-                            variant="top"
-                            src={productDetail?.productImgs[counter]}
-                            style={{ height: 290, objectFit: 'contain'}}
-                        />
-                        <button onClick={next} disabled={counter == 2}><i className="fa-solid fa-chevron-right"></i></button>
+                <Row className='contain--img__info'>
+                    <Col lg >
+                        <Carousel activeIndex={index} onSelect={handleSelect}>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src={productDetail?.productImgs[0]}
+                                    alt="First slide"
+                                    style={{ height: 295, objectFit: 'contain' }}
+                                />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src={productDetail?.productImgs[1]}
+                                    alt="Second slide"
+                                    style={{ height: 295, objectFit: 'contain' }}
+                                />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img
+                                    className="d-block w-100"
+                                    src={productDetail?.productImgs[2]}
+                                    alt="Third slide"
+                                    style={{ height: 295, objectFit: 'contain' }}
+                                />
+                            </Carousel.Item>
+                        </Carousel>
                     </Col>
                     <Col lg className='detail--description'>
                         <h2>{productDetail?.title}</h2>

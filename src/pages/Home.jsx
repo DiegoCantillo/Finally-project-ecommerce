@@ -29,7 +29,7 @@ const Home = () => {
                     <ListGroup>
                         {
                             categories.map(category => (
-                                <ListGroup.Item onClick={() => dispatch(filterProductsThunk(category.id))}
+                                <ListGroup.Item onClick={() => dispatch(filterProductsThunk(category.id)) }
                                     style={{ cursor: 'pointer' }}
                                 >
                                     {category.name}
@@ -59,12 +59,14 @@ const Home = () => {
                                 <Col>
                                     <Card>
                                         <Link to={`/detail/${product.id}`}>
-                                            <Card.Img
-                                                key={product.id}
-                                                variant="top"
-                                                src={product.productImgs[0]}
-                                                style={{ height: 210, objectFit: 'contain', padding: 30 }}
-                                            />
+                                            <div>
+                                                <Card.Img
+                                                    key={product.id}
+                                                    variant="top"
+                                                    src={product.productImgs[0]}
+                                                    style={{ height: 210, objectFit: 'contain', padding: 30 }}
+                                                />
+                                            </div>
                                             <div className="line"></div>
                                             <Card.Body>
                                                 <div className="info--card">

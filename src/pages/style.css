@@ -31,7 +31,13 @@
     font-weight: 900;
 }
 .row{
-    height: 450px;
+    height: auto;
+    margin-bottom: 80px;
+}
+
+
+.contain--img__info .col-lg{
+    height: 380px;
 }
 
 .detail--description{
@@ -39,6 +45,15 @@
     flex-direction: column;
     justify-content: center;
     text-align: justify;
+}
+
+.detail--description .btn{
+    background-color: rgb(187, 23, 69);
+}
+
+.detail--description .btn:hover{
+    transition: 1s;
+    background-color: rgb(206, 9, 13);
 }
 
 .home--and__title{
@@ -53,20 +68,128 @@
 }
 
 .detail--img button{
-    width: 60px;
-    height: 60px;
-    padding: 10px;
+    min-width: 68px;
+    width: 68px;
+    height: 68px;
+    padding: 7px;
     text-align: center;
     border-radius: 50%;
     border: none;
     font-size: 25px;
 }
 
+
+.carousel{
+    width: 100%;
+    height: 95%;
+}
+
+.carousel .carousel-indicators{
+    height: 10px;
+    margin-top: 30px;
+}
+
+.carousel .carousel-indicators [data-bs-target]{
+    background-color: rgb(59, 57, 57);
+    width: 40px;
+    height: 3px;
+    border-radius: 11px;
+}
+
+.carousel .carousel-control-prev .carousel-control-prev-icon {
+    border-radius: 50%;
+    background-color: rgb(153, 146, 143);
+}
+
+.carousel .carousel-control-next .carousel-control-next-icon {
+    border-radius: 50%;
+    background-color: rgb(153, 146, 143);
+}
+
+
 .related--product{
     margin-top: 50px;
 }
 
+.carousel .carousel-control-prev .carousel-control-prev-icon {
+    border-radius: 50%;
+    background-color: rgb(153, 146, 143);
+}
+/**************************************************LOGIN***********************************************/
+
+
 .div--contain__login{
-    width: 40%;
+direction: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+    
+}
+
+.div--contain__login form{
+    margin: auto;
+    width: 350px;
+    height: 360px;
+    border: black solid 1px;
+    padding: 20px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: rgba(10, 37, 37, 0.749);
+}
+
+.div--contain__login form .form-control{
+    border-radius: 8px;
+    height: 40px;
+    background-color: white;
+}
+
+.div--contain__login form .form-label{
+    color: white;
+}
+
+.div--contain__login form .btn-primary {
+    margin-top: 20px;
+    background-color: rgb(9, 103, 234);
+    width: 70%;
+    border-radius: 8px;
+}
+
+.div--contain__login form .btn-primary:hover{
+    transition: 1s;
+    background-color: rgb(94, 159, 250);
+
+}
+
+/**********************************PURCHASES**************************************/
+
+.info--shooping{
+    height: 190px;
+    margin-bottom: 30px;
+    border:1px solid black;
+    border-radius: 10px;
+}
+
+.info--shooping .date{
+    border-bottom: 1px solid black;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.info--shooping .price-and__quantity{
+    display: flex;
+    min-width: 120px;
+    justify-content: space-between;
+}
+
+.info--shooping .content-purchases{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 98%;
     margin: auto;
 }
