@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Carousel, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { addToCarThunk } from '../store/slice/cart.slice';
 import { getProductsThunk } from '../store/slice/products.slice';
+
 
 const ProductsDetail = () => {
 
@@ -24,25 +26,42 @@ const ProductsDetail = () => {
         setIndex(selectedIndex);
     };
 
+    const [quantity, setQuantity] = useState(1);
 
+    const decre = ()=> {
+        setQuantity(quantity-1)
+    }
+    const incre = ()=> {
+        setQuantity(quantity+1)
+    }
 
-
+    const addToCar = () => {
+        const car = {
+            id: productDetail.id,
+            quantity: quantity
+        }
+        dispatch(addToCarThunk(car));
+    }
 
     return (
         <>
-            <div>
+            <div className='main--container__detail'>
                 <div className="home--and__title">
-                    <h2>Home</h2><h2 style={{ fontSize: 16 }}>{productDetail?.title}</h2>
+                    <Link to={'/'}>
+                        <h2>Home</h2>
+                    </Link>
+                    <div className="contain--point"><div className="point"></div></div>
+                    <h3>{productDetail?.title}.</h3>
                 </div>
                 <Row className='contain--img__info'>
-                    <Col lg >
+                    <Col lg={7}>
                         <Carousel activeIndex={index} onSelect={handleSelect}>
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
                                     src={productDetail?.productImgs[0]}
                                     alt="First slide"
-                                    style={{ height: 295, objectFit: 'contain' }}
+                                    style={{ height: 320, objectFit: 'contain' }}
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
@@ -50,7 +69,7 @@ const ProductsDetail = () => {
                                     className="d-block w-100"
                                     src={productDetail?.productImgs[1]}
                                     alt="Second slide"
-                                    style={{ height: 295, objectFit: 'contain' }}
+                                    style={{ height: 320, objectFit: 'contain' }}
                                 />
                             </Carousel.Item>
                             <Carousel.Item>
@@ -58,7 +77,7 @@ const ProductsDetail = () => {
                                     className="d-block w-100"
                                     src={productDetail?.productImgs[2]}
                                     alt="Third slide"
-                                    style={{ height: 295, objectFit: 'contain' }}
+                                    style={{ height: 320, objectFit: 'contain' }}
                                 />
                             </Carousel.Item>
                         </Carousel>
@@ -66,15 +85,28 @@ const ProductsDetail = () => {
                     <Col lg className='detail--description'>
                         <h2>{productDetail?.title}</h2>
                         <p>{productDetail?.description}</p>
-                        <span>Price</span>
-                        <span>{productDetail?.price}</span>
-                        <Button className="btn--car__detail">
+                        <div className='price--vs--quantity'>
+                            <div className='price'>
+                                <span>Price</span>
+                                <span>{productDetail?.price}$</span>
+                            </div>
+                            <div className="quantity">
+                                <button className='decre' onClick={decre} disabled={quantity == 1}>-</button>
+                                <input  type="text"
+                                        value={quantity} 
+                                        onChange={(e)=> setQuantity(e.target.value)}
+                                />
+                                <button className='incre' onClick={incre}>+</button>
+                            </div>
+                        </div>
+                        <Button className="btn--car__detail"  onClick={addToCar} >
                             <span>ADD TO CART  </span><i className="fa-solid fa-cart-arrow-down"></i>
                         </Button>
                     </Col>
                 </Row>
             </div>
             <ul className='related--product'>
+                <h2>Related Products.</h2>
                 <Row xs={1} md={2} lg={4} className="g-4">
                     {relatedProduct.map(related => (
                         <Col>
@@ -98,6 +130,7 @@ const ProductsDetail = () => {
                                                     <span style={{ fontSize: 14 }}>{related.price}</span>
                                                 </Card.Text>
                                             </div>
+                                            <Button>car</Button>
                                         </div>
                                     </Card.Body>
                                 </Link>

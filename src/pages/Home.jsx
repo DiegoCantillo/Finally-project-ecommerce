@@ -20,8 +20,6 @@ const Home = () => {
             .then(res => setCategories(res.data.data.categories))
     }, [])
 
-    console.log(categories);
-
     return (
         <div className='home'>
             <Row>
@@ -70,15 +68,16 @@ const Home = () => {
                                             <div className="line"></div>
                                             <Card.Body>
                                                 <div className="info--card">
-                                                    <Card.Title><h2 style={{ fontSize: 13 }}>{product.title}</h2></Card.Title>
+                                                    <Card.Title><h2 style={{ fontSize: 13, fontFamily: "arial"}}>{product.title}</h2></Card.Title>
                                                     <div className="p">
                                                         <Card.Text>
                                                             <span style={{ color: 'rgb(106, 104, 104' }}>Price</span>
                                                         </Card.Text>
                                                         <Card.Text>
-                                                            <span style={{fontSize: 14}}>{product.price}</span>
+                                                            <span style={{fontSize: 14}}>{product.price}$</span>
                                                         </Card.Text>
                                                     </div>
+                                                    <Button>car</Button>
                                                 </div>
                                             </Card.Body>
                                         </Link>

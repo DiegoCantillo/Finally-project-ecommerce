@@ -28,6 +28,7 @@ const Login = () => {
 
     return (
         <div className='div--contain__login'>
+            <h3>Welcome! Enter your email and password to continue</h3>
             <Form onSubmit={handleSubmit(sumit)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -39,7 +40,7 @@ const Login = () => {
                     <Form.Control type="password" placeholder="Password" {... register("password")}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Submit
+                    Login
                 </Button>
             </Form>
         </div>
