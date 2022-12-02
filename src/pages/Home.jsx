@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { filterProductsThunk, getProductsThunk, searchProductThunk } from '../store/slice/products.slice';
 import "./style.css"
+import { addToCarThunk } from '../store/slice/cart.slice';
 
 const Home = () => {
 
@@ -20,6 +21,15 @@ const Home = () => {
             .then(res => setCategories(res.data.data.categories))
     }, [])
 
+    const addToCar = (id) => {
+        const car = {
+            id: id,
+            quantity: 1
+        }
+        dispatch(addToCarThunk(car));
+    }
+
+
     return (
         <div className='home'>
             <Row>
@@ -27,9 +37,9 @@ const Home = () => {
                     <ListGroup>
                         {
                             categories.map(category => (
-                                <ListGroup.Item onClick={() => dispatch(filterProductsThunk(category.id)) }
+                                <ListGroup.Item onClick={() => dispatch(filterProductsThunk(category.id))}
                                     style={{ cursor: 'pointer' }}
-                                >
+                                    key={category.id}>
                                     {category.name}
                                 </ListGroup.Item>
                             ))
@@ -54,9 +64,9 @@ const Home = () => {
                     <ul>
                         <Row xs={1} md={2} lg={3} className="g-4">
                             {products.map(product => (
-                                <Col>
-                                    <Card>
-                                        <Link to={`/detail/${product.id}`}>
+                                <Col key={product.id}>
+                                    <Card >
+                                        <Link to={`/detail/${product.id}`} >
                                             <div>
                                                 <Card.Img
                                                     key={product.id}
@@ -65,22 +75,23 @@ const Home = () => {
                                                     style={{ height: 210, objectFit: 'contain', padding: 30 }}
                                                 />
                                             </div>
-                                            <div className="line"></div>
-                                            <Card.Body>
-                                                <div className="info--card">
-                                                    <Card.Title><h2 style={{ fontSize: 13, fontFamily: "arial"}}>{product.title}</h2></Card.Title>
-                                                    <div className="p">
-                                                        <Card.Text>
-                                                            <span style={{ color: 'rgb(106, 104, 104' }}>Price</span>
-                                                        </Card.Text>
-                                                        <Card.Text>
-                                                            <span style={{fontSize: 14}}>{product.price}$</span>
-                                                        </Card.Text>
-                                                    </div>
-                                                    <Button>car</Button>
-                                                </div>
-                                            </Card.Body>
                                         </Link>
+                                        <div className="line"></div>
+                                        <Card.Body>
+                                            <div className="info--card">
+                                                <Card.Title><h2 style={{ fontSize: 13, fontFamily: "arial" }}>{product.title}</h2></Card.Title>
+                                                <div className="p">
+                                                    <Card.Text>
+                                                        <span style={{ color: 'rgb(106, 104, 104' }}>Price</span>
+                                                    </Card.Text>
+                                                    <Card.Text>
+                                                        <span style={{ fontSize: 14 }}>${product.price}.</span>
+                                                    </Card.Text>
+                                                </div>
+                                                <Button onClick={()=> addToCar(product.id)}><i className="fa-solid fa-cart-shopping"></i></Button>
+                                            </div>
+                                        </Card.Body>
+
                                     </Card>
                                 </Col>
                             ))}

@@ -14,7 +14,7 @@ const Purchases = () => {
 
 
     return (
-        <div>
+        <div className='purchases'>
             <div className="home--and__title">
                 <Link to={'/'}>
                     <h2>Home</h2>

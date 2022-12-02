@@ -28,17 +28,25 @@ const ProductsDetail = () => {
 
     const [quantity, setQuantity] = useState(1);
 
-    const decre = ()=> {
-        setQuantity(quantity-1)
+    const decre = () => {
+        setQuantity(quantity - 1)
     }
-    const incre = ()=> {
-        setQuantity(quantity+1)
+    const incre = () => {
+        setQuantity(quantity + 1)
     }
 
     const addToCar = () => {
         const car = {
             id: productDetail.id,
             quantity: quantity
+        }
+        dispatch(addToCarThunk(car));
+    }
+
+    const addToCar1 = () => {
+        const car = {
+            id: productDetail.id,
+            quantity: 1
         }
         dispatch(addToCarThunk(car));
     }
@@ -88,19 +96,19 @@ const ProductsDetail = () => {
                         <div className='price--vs--quantity'>
                             <div className='price'>
                                 <span>Price</span>
-                                <span>{productDetail?.price}$</span>
+                                <span>${productDetail?.price}.</span>
                             </div>
                             <div className="quantity">
                                 <button className='decre' onClick={decre} disabled={quantity == 1}>-</button>
-                                <input  type="text"
-                                        value={quantity} 
-                                        onChange={(e)=> setQuantity(e.target.value)}
+                                <input type="text"
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(e.target.value)}
                                 />
                                 <button className='incre' onClick={incre}>+</button>
                             </div>
                         </div>
-                        <Button className="btn--car__detail"  onClick={addToCar} >
-                            <span>ADD TO CART  </span><i className="fa-solid fa-cart-arrow-down"></i>
+                        <Button className="btn--car__detail" onClick={addToCar} >
+                            <span>ADD TO CART </span><i className="fa-solid fa-cart-arrow-down"></i>
                         </Button>
                     </Col>
                 </Row>
@@ -109,39 +117,36 @@ const ProductsDetail = () => {
                 <h2>Related Products.</h2>
                 <Row xs={1} md={2} lg={4} className="g-4">
                     {relatedProduct.map(related => (
-                        <Col>
+                        <Col key={related.id}>
                             <Card>
                                 <Link to={`/detail/${related.id}`}>
                                     <Card.Img
-                                        key={related.id}
                                         variant="top"
                                         src={related.productImgs[0]}
                                         style={{ height: 210, objectFit: 'contain', padding: 30 }}
                                     />
                                     <div className="line"></div>
-                                    <Card.Body>
-                                        <div className="info--card">
-                                            <Card.Title><h2 style={{ fontSize: 13 }}>{related.title}</h2></Card.Title>
-                                            <div className="p">
-                                                <Card.Text>
-                                                    <span style={{ color: 'rgb(106, 104, 104' }}>Price</span>
-                                                </Card.Text>
-                                                <Card.Text>
-                                                    <span style={{ fontSize: 14 }}>{related.price}</span>
-                                                </Card.Text>
-                                            </div>
-                                            <Button>car</Button>
-                                        </div>
-                                    </Card.Body>
                                 </Link>
+                                <Card.Body>
+                                    <div className="info--card">
+                                        <Card.Title><h2 style={{ fontSize: 13 }}>{related.title}</h2></Card.Title>
+                                        <div className="p">
+                                            <Card.Text>
+                                                <span style={{ color: 'rgb(106, 104, 104' }}>Price</span>
+                                            </Card.Text>
+                                            <Card.Text>
+                                                <span style={{ fontSize: 14 }}>${related.price}.</span>
+                                            </Card.Text>
+                                        </div>
+                                        <Button onClick={()=> addToCar1(related.id)}><i className="fa-solid fa-cart-shopping"></i></Button>
+                                    </div>
+                                </Card.Body>
                             </Card>
                         </Col>
                     ))}
                 </Row>
             </ul>
         </>
-
-
     );
 };
 
