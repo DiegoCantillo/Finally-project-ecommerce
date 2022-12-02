@@ -12,6 +12,11 @@ const Purchases = () => {
         dispatch(getPurchasesThunk())
     }, [])
 
+    const getFormateDate = (dateString) => {
+        const date = new Date(dateString)
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+        return date.toLocaleDateString(undefined, options)
+    }
 
     return (
         <div className='purchases'>
@@ -28,7 +33,7 @@ const Purchases = () => {
                     <Link to={`/detail/${prod.id}`}>
                         <div className="info--shooping">
                             <div className="date">
-                                <p style={{ fontWeight: 900 }}>{prod.productsInCart.createdAt}</p>
+                                <p style={{ fontWeight: 900 }}>{getFormateDate(prod.productsInCart.createdAt)}</p>
                             </div>
                             <div className="content-purchases">
                                 <p style={{ fontWeight: 900 }}>{prod.title}</p>

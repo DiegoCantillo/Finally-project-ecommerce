@@ -94,3 +94,14 @@ body{
     opacity: 0;
   }
 }
+
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(53, 53, 86);
+  height: 90px;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}

@@ -29,6 +29,9 @@ function App() {
           <Route path='/detail/:id' element={<ProductsDetail/>}/>
         </Routes>
       </Container>
+      <footer>
+        Hecho Con ♥ Por Luis Diego Cantillo M. En Academlo
+      </footer>
     </HashRouter>
   )
 }
