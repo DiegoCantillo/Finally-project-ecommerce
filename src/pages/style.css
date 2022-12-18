@@ -27,7 +27,8 @@
     font-size: 2px;
 }
 .card-body{
-    background-color: rgba(212, 220, 220, 0.104);
+    background-color:rgba(165, 165, 237, 0.345);
+    border-radius: 0 0 8px 8px;
 }
 
 .info--card{
@@ -286,7 +287,7 @@ text-align: center;
     text-align: left;
     margin: auto;
     width: 350px;
-    height: 360px;
+    height: 460px;
     border: black solid 1px;
     padding: 20px 7px;
     display: flex;
@@ -295,6 +296,22 @@ text-align: center;
     justify-content: center;
     border-radius: 10px;
     background-color: rgba(10, 37, 37, 0.749);
+}
+
+.div--contain__login form .datas h3{
+    margin: 0;
+    color: white;
+}
+
+.div--contain__login form .datas{
+    background-color: rgba(128, 206, 226, 0.677);
+    z-index: 1;
+    color: white;
+    width: 80%;
+    padding: 7px 15px;
+    height: 100px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .div--contain__login form .form-control{

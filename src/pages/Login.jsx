@@ -28,8 +28,14 @@ const Login = () => {
 
     return (
         <div className='div--contain__login'>
+
             <h3>Welcome! Enter your email and password to continue</h3>
             <Form onSubmit={handleSubmit(sumit)}>
+                <div className='datas'>
+                    <h3>Test data</h3>
+                    <p><b><i class="fa-regular fa-envelope"></i>:</b> diegocanti@gmail.com</p>
+                    <p><b><i class="fa-solid fa-lock"></i>:</b> probando123</p>
+                </div>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" {... register("email")}/>
