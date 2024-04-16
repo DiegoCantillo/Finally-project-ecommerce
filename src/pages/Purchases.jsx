@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getPurchasesThunk} from '../store/slice/purchases.slice';
+import { getPurchasesThunk } from '../store/slice/purchases.slice';
 
 const Purchases = () => {
 
@@ -18,6 +18,8 @@ const Purchases = () => {
         return date.toLocaleDateString(undefined, options)
     }
 
+    console.log(purchases);
+
     return (
         <div className='purchases'>
             <div className="home--and__title">
@@ -29,7 +31,7 @@ const Purchases = () => {
             </div>
             <h1>My Purcharses</h1>
             {purchases.map(purchase => (purchase.cart.products.map(prod => (
-                <li key={prod.id}>
+                < li key={prod.id} >
                     <Link to={`/detail/${prod.id}`}>
                         <div className="info--shooping">
                             <div className="date">
@@ -48,7 +50,7 @@ const Purchases = () => {
             )
             )))}
 
-        </div>
+        </div >
     );
 };
 

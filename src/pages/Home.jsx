@@ -21,6 +21,8 @@ const Home = () => {
             .then(res => setCategories(res.data.data.categories))
     }, [])
 
+  
+
     const addToCar = (id) => {
         const car = {
             id: id,
