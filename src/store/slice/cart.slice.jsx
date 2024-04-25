@@ -15,28 +15,28 @@ export const cartSlice = createSlice({
 
 export const getCartThunk = () => (dispatch) => {
     dispatch(setIsLoading(true));
-    return axios.get('https://e-commerce-api.academlo.tech/api/v1/cart', getConfig())
-        .then((res) => dispatch(getcart(res.data.data.cart.products)))
+    return axios.get('https://e-commerce-api-v2.academlo.tech/api/v1/cart', getConfig())
+        .then((res) => {dispatch(getcart(res.data))})
         .finally(() => dispatch(setIsLoading(false)));
 }
 
 export const addToCarThunk = (car) => (dispatch) => {
     dispatch(setIsLoading(true));
-    return axios.post('https://e-commerce-api.academlo.tech/api/v1/cart', car, getConfig())
+    return axios.post('https://e-commerce-api-v2.academlo.tech/api/v1/cart', car, getConfig())
         .then(() => dispatch(getCartThunk()))
         .finally(() => dispatch(setIsLoading(false)));
 }
 
 export const checkaoutCartThunk = () => (dispatch) => {
     dispatch(setIsLoading(true));
-    return axios.post('https://e-commerce-api.academlo.tech/api/v1/purchases', {}, getConfig())
+    return axios.post('https://e-commerce-api-v2.academlo.tech/api/v1/purchases', {}, getConfig())
         .then(() => dispatch(getcart([])))
         .finally(() => dispatch(setIsLoading(false)));
 }
 
 export const deleteCartThunk = (id) => (dispatch) => {
     dispatch(setIsLoading(true));
-    return axios.delete(`https://e-commerce-api.academlo.tech/api/v1/cart/${id}`, getConfig())
+    return axios.delete(`https://e-commerce-api-v2.academlo.tech/api/v1/cart/${id}`, getConfig())
         .then(() => dispatch(getCartThunk()))
         .finally(() => dispatch(setIsLoading(false)));
 }

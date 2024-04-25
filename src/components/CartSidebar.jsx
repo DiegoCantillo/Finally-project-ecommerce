@@ -14,14 +14,15 @@ const CartSidebar = ({show, handleClose}) => {
     }, [])
 
     
-   const filterPrice = carts.map(price => price.price)
+   const filterPrice = carts.map(price => price.product.price)
+   
   
    const [ totalPrice, setTotalPrice ] = useState(0);
 
    useEffect(() => {
     let total = 0;
     carts.forEach(product => {
-        total += product.price * product.productsInCart.quantity;
+        total += product.product.price * product.quantity;
     })
     setTotalPrice(total)
    }, [carts])
@@ -38,15 +39,15 @@ const CartSidebar = ({show, handleClose}) => {
                         <div key={cart.id} className='contend--product__delete'>
                             <div className='title__quantity'>
                                 <div className="name-product">
-                                    <p>{cart.title}</p>
+                                    <p>{cart.product.title}</p>
                                 </div>
                                 <div className="quantity-nav">
-                                    <span>{cart.productsInCart.quantity}</span>
+                                    <span>{cart.quantity}</span>
                                 </div>
                             </div>
                             <div className="delete">
                                 <span onClick={()=> dispatch(deleteCartThunk(cart.id))} style={{cursor: "pointer"}}><i className="fa-regular fa-trash-can"></i></span>
-                                <span style={{fontSize: 12}}>${cart.price}.</span>
+                                <span style={{fontSize: 12}}>${cart.product.price}.</span>
                             </div>
                         </div>
                     ))

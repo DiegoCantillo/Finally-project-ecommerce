@@ -17,20 +17,28 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getProductsThunk())
-        axios.get('https://e-commerce-api.academlo.tech/api/v1/products/categories')
-            .then(res => setCategories(res.data.data.categories))
+        axios.get('https://e-commerce-api-v2.academlo.tech/api/v1/categories')
+            .then(res => setCategories(res.data))
     }, [])
 
-  
 
     const addToCar = (id) => {
         const car = {
-            id: id,
-            quantity: 1
+            quantity: 1,
+            productId: id,
         }
         dispatch(addToCarThunk(car));
     }
 
+    const [positionImg, setPositionImg] =  useState(0)
+
+
+    const ChangeProductImg = (productId, position) => {
+        setPositionImg(prevState => ({
+            ...prevState,
+            [productId]: position
+        }));
+    }
 
     return (
         <div className='home'>
@@ -69,11 +77,13 @@ const Home = () => {
                                 <Col key={product.id}>
                                     <Card >
                                         <Link to={`/detail/${product.id}`} >
-                                            <div>
+                                            <div  className='card-image'
+                                                onMouseEnter={() => ChangeProductImg(product.id, 1)}
+                                                onMouseLeave={() => ChangeProductImg(product.id, 0)}>
                                                 <Card.Img
                                                     key={product.id}
                                                     variant="top"
-                                                    src={product.productImgs[0]}
+                                                    src={product.images[positionImg[product.id] || 0]?.url}
                                                     style={{ height: 210, objectFit: 'contain', padding: 30 }}
                                                 />
                                             </div>

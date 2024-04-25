@@ -11,11 +11,10 @@ const Login = () => {
     const navigate = useNavigate()
 
     const sumit = (data) =>{
-        axios.post('https://e-commerce-api.academlo.tech/api/v1/users/login', data)
+        axios.post('https://e-commerce-api-v2.academlo.tech/api/v1/users/login', data)
             .then(res => {
                 navigate("/")
-                console.log(res);
-                localStorage.setItem("token", res.data.data.token)
+                localStorage.setItem("token", res.data.token)
             })
             .catch(error => {
                 if(error.response.status === 404){
@@ -25,6 +24,7 @@ const Login = () => {
                 }
             })
     }
+
 
     return (
         <div className='div--contain__login'>

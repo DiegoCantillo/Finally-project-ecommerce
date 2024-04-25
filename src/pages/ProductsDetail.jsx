@@ -20,6 +20,8 @@ const ProductsDetail = () => {
     const productDetail = productsList.find(product => product.id === +id)
     const relatedProduct = productsList.filter(related => related?.category.id == productDetail?.category.id && related.id !== productDetail.id)
 
+
+
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {
@@ -51,6 +53,15 @@ const ProductsDetail = () => {
         dispatch(addToCarThunk(car));
     }
 
+    const [positionImg, setPositionImg] = useState(0);
+
+    const changePositionImg = (productId, position)=> {
+       setPositionImg((prevValue)=> ({
+        ...prevValue,
+        [productId]: position
+       }))
+    }
+
     return (
         <>
             <div className='main--container__detail'>
@@ -67,7 +78,7 @@ const ProductsDetail = () => {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={productDetail?.productImgs[0]}
+                                    src={productDetail?.images[0].url}
                                     alt="First slide"
                                     style={{ height: 320, objectFit: 'contain' }}
                                 />
@@ -75,7 +86,7 @@ const ProductsDetail = () => {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={productDetail?.productImgs[1]}
+                                    src={productDetail?.images[1].url}
                                     alt="Second slide"
                                     style={{ height: 320, objectFit: 'contain' }}
                                 />
@@ -83,7 +94,7 @@ const ProductsDetail = () => {
                             <Carousel.Item>
                                 <img
                                     className="d-block w-100"
-                                    src={productDetail?.productImgs[2]}
+                                    src={productDetail?.images[2].url}
                                     alt="Third slide"
                                     style={{ height: 320, objectFit: 'contain' }}
                                 />
@@ -120,12 +131,17 @@ const ProductsDetail = () => {
                         <Col key={related.id}>
                             <Card>
                                 <Link to={`/detail/${related.id}`}>
+                                <div className="card-image" 
+                                    onMouseEnter={()=> changePositionImg(related.id, 1)}
+                                    onMouseLeave={()=> changePositionImg(related.id, 0)}
+                                >
                                     <Card.Img
                                         variant="top"
-                                        src={related.productImgs[0]}
+                                        src={related.images[positionImg[related.id] || 0].url}
                                         style={{ height: 210, objectFit: 'contain', padding: 30 }}
                                     />
-                                    <div className="line"></div>
+                                </div>
+                                <div className="line"></div>
                                 </Link>
                                 <Card.Body>
                                     <div className="info--card">

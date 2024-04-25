@@ -18,7 +18,7 @@ const Purchases = () => {
         return date.toLocaleDateString(undefined, options)
     }
 
-    console.log(purchases);
+ 
 
     return (
         <div className='purchases'>
@@ -30,25 +30,26 @@ const Purchases = () => {
                 <h3>Purchases.</h3>
             </div>
             <h1>My Purcharses</h1>
-            {purchases.map(purchase => (purchase.cart.products.map(prod => (
+            {purchases.map(prod => (
                 < li key={prod.id} >
                     <Link to={`/detail/${prod.id}`}>
                         <div className="info--shooping">
                             <div className="date">
-                                <p style={{ fontWeight: 900 }}>{getFormateDate(prod.productsInCart.createdAt)}</p>
+                                <p style={{ fontWeight: 900 }}>{getFormateDate(prod.createdAt)}</p>
                             </div>
                             <div className="content-purchases">
-                                <p style={{ fontWeight: 900 }}>{prod.title}</p>
+                                <img src={prod.product.images[0].url} alt={`img-${prod.product.title}`} style={{width: '70px'}}/>
+                                <p className='title-purchase' style={{ fontWeight: 900 }}>{prod.product.title}</p>
                                 <div className="price-and__quantity">
-                                    <p>{prod.price}<span style={{ fontWeight: 900 }}>$</span></p>
-                                    <p>{prod.productsInCart.quantity}</p>
+                                    <p>{prod.product.price}<span style={{ fontWeight: 900, margin: '5px' }} >$</span></p>
+                                    <p className='quantity'>{prod.quantity}</p>
                                 </div>
                             </div>
                         </div>
                     </Link>
                 </li>
             )
-            )))}
+            )}
 
         </div >
     );

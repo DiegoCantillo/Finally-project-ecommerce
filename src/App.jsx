@@ -30,7 +30,7 @@ function App() {
         </Routes>
       </Container>
       <footer>
-        Hecho Con ♥ Por Luis Diego Cantillo M. En Academlo
+         &copy; Diego Cantillo 
       </footer>
     </HashRouter>
   )
